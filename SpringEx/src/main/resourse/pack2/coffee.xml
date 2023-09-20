@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mysql">
+	
+	<insert id="db_insert" parameterType="model.field_rent">
+		insert into field_rent values(default,#{rent_title},#{rent_content},default);
+	</insert>
+	
+	<select id="select_list" resultType="model.field_rent">
+		select * from field_rent;	
+	</select>
+	
+	<delete id="db_delete" parameterType="Integer">
+		delete from field_rent where rent_num = #{rent_num};	
+	</delete>
+	
+	<select id="log_select" parameterType="model.Login_info" resultType="model.Login_info">
+		select * from login_info where log_id= #{log_id} and password= #{password};
+	</select>
+	
+	<select id="white_select" parameterType="Integer" resultType="model.field_rent">
+		select*from field_rent where rent_num = #{num};
+	</select>
+</mapper>

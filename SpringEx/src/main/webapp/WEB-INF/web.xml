@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee    
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<!-- xml 파일 생성할 때 servlet-name에서 입력한 이름(spring. 다른걸로 name을 줬다면 그 name을 입력)
+		을 앞 부분에 붙여줘야함 EX) spring ~~~.xml
+		-->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- DispatcherServlet == 프론트엔드 기본이 되는 컨트롤러 -->
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+     <context-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value>/WEB-INF/applicationContext.xml</param-value>
+     </context-param>
+     <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+     </listener>
+	
+</web-app>
